@@ -31,3 +31,11 @@ export type SearchRow = {
   image: string;
   asins: string[]; // all ASINs across marketplaces, for id search
 };
+
+// One row per (video, product) pair, carrying the full product so the
+// homepage catalog can render buy buttons directly without a click-through.
+export type CatalogItem = {
+  videoId: string;
+  videoTitle: string;
+  product: Product;
+};

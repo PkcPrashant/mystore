@@ -1,11 +1,11 @@
-export const metadata = { title: "Affiliate Disclosure | uael.ink" };
+export const metadata = { title: "Affiliate Disclosure | mystore.com" };
 
 export default function DisclosurePage() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-12 space-y-4 text-ink/80 leading-relaxed">
       <h1 className="font-display text-2xl font-semibold text-ink">Affiliate Disclosure</h1>
       <p>
-        uael.ink is a participant in the Amazon Associates Program, an affiliate
+        mystore.com is a participant in the Amazon Associates Program, an affiliate
         advertising program designed to provide a means for sites to earn
         advertising fees by advertising and linking to Amazon.ae, Amazon.sa, and
         affiliated sites.

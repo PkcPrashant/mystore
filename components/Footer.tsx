@@ -17,12 +17,9 @@ export default function Footer() {
           <Link href="/terms" className="hover:text-ink">
             Terms
           </Link>
-          <Link href="/contact" className="hover:text-ink">
-            Contact
-          </Link>
         </nav>
         <p>As an Amazon Associate I earn from qualifying purchases.</p>
-        <p>© {new Date().getFullYear()} uael.ink</p>
+        <p>© {new Date().getFullYear()} mystore.com</p>
       </div>
     </footer>
   );

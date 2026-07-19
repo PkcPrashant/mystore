@@ -1,7 +1,13 @@
-# uael.ink clone — Amazon affiliate site for TikTok videos
+# mystore — Amazon affiliate site for TikTok videos
 
-Next.js 14 + TypeScript + Tailwind. Static pages, one per TikTok video, with
-a search bar across all products/videos.
+Next.js 14 + TypeScript + Tailwind. Homepage is one searchable, flat catalog
+of every product across all your videos — thumbnail + buy buttons right
+there, no click-through required. Each video also gets its own static page
+at `/v/{videoId}` for a short, shareable link if you want one per TikTok.
+
+**Live at:** https://mystore-tiktok.vercel.app/
+(This is a Vercel preview URL. Fine for testing — get a real custom domain
+before you push real TikTok traffic to it, see step 3.)
 
 ## 1. Run it locally
 
@@ -14,80 +20,69 @@ Open http://localhost:3000
 
 ## 2. Add your real content
 
-1. **Get your Amazon tags.** Amazon Associates gives you a different tracking
-   ID per marketplace (e.g. `travel07ca-21` for `.ae`, a different one for
-   `.sa`). Replace `"travel07ca-21"` in the sample JSON files with your real tags.
+1. **Get your Amazon tags.** You currently have a UAE tag only
+   (`travel07ca-21`). It's applied to every product's `.ae` button. The `.sa`
+   buttons in the sample data reuse the same tag as a placeholder — swap
+   those to your real `.sa` tag once that program is approved (don't leave
+   the UAE tag on `.sa` links, it won't get you credited there).
 2. **Add product photos** to `public/products/` (see the README inside that
-   folder). Keep them square, compressed, ~500x500px.
+   folder). Square, compressed, ~500x500px.
 3. **Add a video**: copy `data/videos/1001.json` to `data/videos/{newId}.json`,
-   change `id`, `title`, `publishedAt`, and the `products` array. That's it —
-   no code changes needed. The page `/v/{newId}` and the search index both
-   pick it up automatically on next build.
-4. **Edit `app/contact/page.tsx`** with your real support email.
-5. **Review the four legal pages** (`/disclosure`, `/privacy`, `/terms`,
-   `/cookies`) — I've drafted them to be accurate to what this specific site
-   does, but they are templates, not legal advice. If you'll be handling EU
-   visitors too, consider a quick review by a local advisor for GDPR-specific
-   wording.
+   change `id`, `title`, `publishedAt`, and `products`. No code changes
+   needed — the homepage catalog and `/v/{newId}` both pick it up on next
+   build/deploy.
+4. **Review the legal pages** (`/disclosure`, `/privacy`, `/terms`,
+   `/cookies`) — drafted to match what this site actually does, but they're
+   templates, not legal advice.
 
-## 3. Deploy to Vercel (free)
+## 3. Deploy
 
-1. Push this folder to a new GitHub repo:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/{you}/{repo}.git
-   git push -u origin main
-   ```
-2. Go to https://vercel.com → **New Project** → import that repo.
-   Framework preset auto-detects as Next.js. No env vars needed. Click Deploy.
-3. You'll get a `{something}.vercel.app` URL immediately.
+This project is already connected to Vercel at the URL above. To ship
+changes:
 
-## 4. Point your real domain at it
+```bash
+git add .
+git commit -m "Update products"
+git push
+```
 
-1. Buy a domain (Namecheap, GoDaddy, or Cloudflare Registrar — cheapest, no
-   markup).
-2. In Vercel: **Project → Settings → Domains → Add**, enter your domain.
-3. Vercel gives you DNS records (usually an `A` record + a `CNAME` for `www`).
-   Add those in your domain registrar's DNS settings.
-4. Wait for DNS to propagate (~10 min to a few hours). Vercel auto-issues an
-   SSL certificate.
+Vercel redeploys automatically on push to `main`.
 
-## 5. Put it in your TikTok bio / video description
+**To move off the `.vercel.app` URL:** buy a domain (Namecheap, Cloudflare
+Registrar), then in Vercel: **Project → Settings → Domains → Add**, enter it,
+and add the DNS records Vercel gives you at your registrar. Then update
+`siteUrl` in `app/layout.tsx` to match.
 
-- **Bio link:** point it at your homepage (`https://yourdomain.com`) so it
-  always shows the latest videos + search.
-- **Video description (optional, single-product videos):** you can drop the
-  direct Amazon link there instead of/alongside the site link — see the
-  chat discussion on when that's worth doing.
-- Consider a short redirect per video for a cleaner link if TikTok's caption
-  space is tight, e.g. `yourdomain.com/v/1001` is already short enough to
-  type/read directly.
+## 4. Put it in your TikTok bio / video description
 
-## 6. After launch — things to keep an eye on
+- **Bio link:** point at the homepage — it always shows every product,
+  searchable.
+- **Video description (optional, single-product videos):** the direct
+  Amazon link can go there instead of/alongside the site link.
+- `/v/{videoId}` pages still exist if you want a short link scoped to one
+  video instead of the full catalog.
+
+## 5. After launch — keep an eye on
 
 - **Amazon Associates requires 3 qualifying sales within 180 days** of
-  joining or your account gets closed — post consistently early on.
-- Each marketplace (`.ae`, `.sa`) has its **own approval and its own 180-day
-  clock** — don't assume approval on one carries to the other.
-- If you expand to more GCC countries, remember there's currently no local
-  Amazon storefront for Qatar/Kuwait/Bahrain/Oman — that traffic converts via
-  `amazon.ae`. Re-check this if Amazon changes policy (worth a quick search
-  before you build out region-specific pages).
-- Add basic analytics (Vercel Analytics is one click in the dashboard, free
-  tier available) so you can see which videos/products actually convert.
+  joining or the account closes — post consistently early on.
+- `.ae` and `.sa` are **separate approvals with separate 180-day clocks** —
+  don't assume approval on one carries to the other.
+- No local Amazon storefront exists for Qatar/Kuwait/Bahrain/Oman — that
+  traffic currently converts via `amazon.ae`. Re-check if Amazon's policy
+  changes before building region-specific pages.
+- Add Vercel Analytics (one click in the dashboard, free tier) to see which
+  products actually convert.
 
 ## Project structure
 
 ```
 data/videos/*.json      one file per TikTok video — your main daily edit
 lib/videos.ts           reads video JSON at build time
-lib/search.ts           flattens all videos into a searchable index
+lib/search.ts           flattens all videos into the homepage catalog
 lib/marketplaces.ts     amazon.ae / amazon.sa config
-app/page.tsx            homepage: search + latest videos grid
-app/v/[videoId]/        one static page per video
-app/{disclosure,privacy,terms,cookies,contact}/  compliance pages
-components/             SearchBar, ProductCard, Header, Footer
+app/page.tsx            homepage: flat searchable product catalog
+app/v/[videoId]/        optional per-video static page
+app/{disclosure,privacy,terms,cookies}/  compliance pages
+components/             Catalog, ProductCard, Header, Footer
 ```

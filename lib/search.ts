@@ -1,5 +1,19 @@
 import { getAllVideos } from "./videos";
-import type { SearchRow } from "./types";
+import type { SearchRow, CatalogItem } from "./types";
+
+// Full flat list for the homepage: one entry per (video, product) pair,
+// carrying the whole product so buy buttons render directly on the homepage
+// with no click-through to a video page needed.
+export function buildCatalog(): CatalogItem[] {
+  const items: CatalogItem[] = [];
+  for (const video of getAllVideos()) {
+    for (const product of video.products) {
+      items.push({ videoId: video.id, videoTitle: video.title, product });
+    }
+  }
+  // Newest videos first (getAllVideos is already sorted by publishedAt desc)
+  return items;
+}
 
 // Builds one row per (video, product) pair. Because the same product can
 // appear in multiple videos, searching "banana slicer" or its ASIN can

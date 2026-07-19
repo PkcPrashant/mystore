@@ -1,4 +1,4 @@
-export const metadata = { title: "Cookie Policy | uael.ink" };
+export const metadata = { title: "Cookie Policy | mystore.com" };
 
 export default function CookiePolicyPage() {
   return (

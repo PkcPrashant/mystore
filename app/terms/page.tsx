@@ -1,11 +1,11 @@
-export const metadata = { title: "Terms of Use | uael.ink" };
+export const metadata = { title: "Terms of Use | mystore.com" };
 
 export default function TermsPage() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-12 space-y-4 text-ink/80 leading-relaxed">
       <h1 className="font-display text-2xl font-semibold text-ink">Terms of Use</h1>
       <p>
-        By using uael.ink, you agree that product information (prices,
+        By using mystore.com, you agree that product information (prices,
         availability, images) is provided for convenience and may not always be
         fully up to date. Always verify details on Amazon before purchasing.
       </p>
@@ -16,7 +16,7 @@ export default function TermsPage() {
         Amazon&apos;s own terms of sale.
       </p>
       <p>
-        Content on this site (text, layout, and design) belongs to uael.ink
+        Content on this site (text, layout, and design) belongs to mystore.com
         unless otherwise noted. Product images and names belong to their
         respective owners/manufacturers.
       </p>

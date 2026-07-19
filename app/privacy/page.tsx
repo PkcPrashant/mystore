@@ -1,4 +1,4 @@
-export const metadata = { title: "Privacy Policy | uael.ink" };
+export const metadata = { title: "Privacy Policy | mystore.com" };
 
 export default function PrivacyPage() {
   return (
@@ -20,13 +20,6 @@ export default function PrivacyPage() {
       <p>
         If you contact us directly (e.g. by email), we use that information only
         to respond to you and do not sell or share it with third parties.
-      </p>
-      <p>
-        Questions about this policy? Reach out via the{" "}
-        <a href="/contact" className="text-clay underline">
-          contact page
-        </a>
-        .
       </p>
     </main>
   );

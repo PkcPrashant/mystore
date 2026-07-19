@@ -14,9 +14,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const video = getVideo(params.videoId);
   if (!video) return {};
+  const title = `${video.title} | mystore`;
+  const description = `Find all ${video.products.length} products from "${video.title}" on Amazon UAE and Saudi Arabia.`;
+  const image = video.products[0]?.image;
   return {
-    title: `${video.title} | uael.ink`,
-    description: `Find all ${video.products.length} products from "${video.title}" on Amazon UAE and Saudi Arabia.`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      images: image ? [{ url: image }] : undefined,
+    },
   };
 }
 
