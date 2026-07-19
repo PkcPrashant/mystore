@@ -1,0 +1,34 @@
+{
+  "id": "1001",
+  "title": "Kitchen finds that went viral",
+  "publishedAt": "2026-07-01",
+  "products": [
+    {
+      "id": "banana-slicer",
+      "name": "Handheld Banana and Fruit Slicer",
+      "image": "/products/banana-slicer.png",
+      "links": {
+        "ae": { "asin": "B0D4HPSNVK", "tag": "travel07ca-21" },
+        "sa": { "asin": "B0CY3QNYM3", "tag": "travel07ca-21" }
+      }
+    },
+    {
+      "id": "vegetable-chopper",
+      "name": "Fullstar Vegetable Chopper",
+      "image": "/products/vegetable-chopper.png",
+      "links": {
+        "ae": { "asin": "B0764HS4SL", "tag": "travel07ca-21" },
+        "sa": { "asin": "B0764HS4SL", "tag": "travel07ca-21" }
+      }
+    },
+    {
+      "id": "jar-opener",
+      "name": "Adjustable Jar Opener",
+      "image": "/products/jar-opener.png",
+      "links": {
+        "ae": { "asin": "B0GZSYFY81", "tag": "travel07ca-21" },
+        "sa": { "asin": "B0GQZ8435D", "tag": "travel07ca-21" }
+      }
+    }
+  ]
+}

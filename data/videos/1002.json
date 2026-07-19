@@ -1,0 +1,25 @@
+{
+  "id": "1002",
+  "title": "Small tech that saves you money",
+  "publishedAt": "2026-07-10",
+  "products": [
+    {
+      "id": "usb-charger",
+      "name": "iWALK Mini USB-C Portable Charger",
+      "image": "/products/usb-charger.png",
+      "links": {
+        "ae": { "asin": "B0CH84RRF3", "tag": "travel07ca-21" },
+        "sa": { "asin": "B0DDT57ND3", "tag": "travel07ca-21" }
+      }
+    },
+    {
+      "id": "vegetable-chopper",
+      "name": "Fullstar Vegetable Chopper",
+      "image": "/products/vegetable-chopper.png",
+      "links": {
+        "ae": { "asin": "B0764HS4SL", "tag": "travel07ca-21" },
+        "sa": { "asin": "B0764HS4SL", "tag": "travel07ca-21" }
+      }
+    }
+  ]
+}
